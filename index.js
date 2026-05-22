@@ -13,7 +13,7 @@ app.get("/webhook", (req, res) => {
 
   if (mode && token) {
     if (mode === "subscribe" && token === VERIFY_TOKEN) {
-      console.log("Webhook verificado");
+      console.log("WEBHOOK VERIFICADO");
       return res.status(200).send(challenge);
     }
   }
@@ -22,7 +22,7 @@ app.get("/webhook", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-  console.log("MENSAJE RECIBIDO:");
+  console.log("====== NUEVO EVENTO ======");
   console.log(JSON.stringify(req.body, null, 2));
 
   res.sendStatus(200);
