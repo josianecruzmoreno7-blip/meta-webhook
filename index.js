@@ -21,9 +21,26 @@ app.get("/webhook", (req, res) => {
   return res.sendStatus(403);
 });
 
-app.post("/webhook", (req, res) => {
+app.post("/webhook", async (req, res) => {
   console.log("====== NUEVO EVENTO ======");
   console.log(JSON.stringify(req.body, null, 2));
+
+  try {
+    await fetch(
+      "https://josianecristhian.app.n8n.cloud/webhook/meta-events",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(req.body)
+      }
+    );
+
+    console.log("Evento enviado a n8n");
+  } catch (error) {
+    console.error("Error enviando a n8n:", error);
+  }
 
   res.sendStatus(200);
 });
