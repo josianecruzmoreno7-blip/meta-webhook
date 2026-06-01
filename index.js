@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-const VERIFY_TOKEN = "mi_token";
+const VERIFY_TOKEN = "my_token";
 
 app.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
